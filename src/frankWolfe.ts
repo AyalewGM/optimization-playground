@@ -26,5 +26,5 @@ export function comparisonStep(s:Comparison,region:CompactRegion,kind:Objective,
  return{projected:advance(s.projected,region,kind,rate),frankWolfe:frankWolfeStep(s.frankWolfe,region,kind)};
 }
 export function comparisonDiagnostics(s:Comparison,region:CompactRegion,kind:Objective){
- return {projectedValue:objective(s.projected.point,kind),frankWolfeValue:objective(s.frankWolfe.point,kind),gap:frankWolfeGap(s.frankWolfe.point,region,kind),projectedResidual:Math.hypot(...Object.values((()=>{const p=s.projected.point,g=gradient(p,kind),q=project({x:p.x-g.x,y:p.y-g.y},region);return{x:p.x-q.x,y:p.y-q.y}})()))};
+ return {projectedValue:objective(s.projected.point,kind),frankWolfeValue:objective(s.frankWolfe.point,kind),gap:frankWolfeGap(s.frankWolfe.point,region,kind),projectedResidual:(()=>{const p=s.projected.point,g=gradient(p,kind),q=project({x:p.x-g.x,y:p.y-g.y},region);return Math.hypot(p.x-q.x,p.y-q.y)})()};
 }
