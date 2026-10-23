@@ -108,3 +108,16 @@ $$
 BFGS maintains an approximation of the **inverse Hessian** with a curvature update whenever $s^Ty>0$. RMSProp uses an exponential average of squared gradients; Nesterov evaluates gradients at a momentum look-ahead point.
 
 **Interpretation caution:** the shared slider value does not equate effective step sizes across methods. Educational step clipping bounds all displacements. Optimization results are not benchmark claims without repeated, calibrated experiments, independent stopping rules and comparable evaluation counts. This first release does not yet include exact line search, Wolfe conditions, or unconstrained trust-region safeguards.
+
+### Interpreting optimizer race diagnostics
+
+The race table now includes separate counts for **objective evaluations** and **gradient evaluations**, alongside gradient norm and how frequently the shared educational displacement limit was applied.
+
+These distinctions matter: one iteration of BFGS or Nesterov may use more derivative evaluations than a simple gradient update. Counting iterations alone can therefore be misleading.
+
+- **Objective evaluations:** calls to the objective during initialization and each accepted new step (not visualization sampling).
+- **Gradient evaluations:** calls to the analytic gradient in the optimization runner, including look-ahead and post-step checks.
+- **Gradient norm:** $\|\nabla f(\mathbf{x}_k)\|_2$, a first-order stationarity diagnostic, not proof of a global minimum.
+- **Clipped steps:** number of updates that exceeded the educational maximum displacement of $1.25$ units.
+
+**Caution:** This is still an instructional comparison, not a controlled benchmark. Learning-rate choices, clipping, and stopping criteria must be calibrated before comparing computational efficiency. The visual landscape renderer makes additional objective calls that are not included in algorithm counts.
