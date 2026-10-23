@@ -157,3 +157,7 @@ $$
 These conditions expose **active constraints**, stationarity and complementarity. The examples are smooth convex problems with convex feasible sets; this is not a general-purpose nonlinear programming solver. KKT diagnostics shown are specific to the disk, not claimed for all shapes.
 
 Try starting outside the feasible region; the first state is projected inside. Then compare the box, disk and half-plane and observe how the optimal boundary point changes. The algorithm uses a fixed learning rate with no line search or automated convergence stopping.
+
+## Guided experiment: Predict → Run → Explain
+
+The first interactive lesson asks learners to predict whether the constrained optimum for a target outside the unit disk lies inside, on, or outside the disk. It then computes 45 projected-gradient steps, reports the objective and stationarity evidence, and asks for a mathematical explanation. Feedback checks whether the explanation discusses both the gradient and feasibility; this lightweight keyword check is **not** a reliable evaluation of mathematical correctness. More structured, mathematically validated assessment is a future improvement.
