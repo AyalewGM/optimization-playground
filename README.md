@@ -121,3 +121,11 @@ These distinctions matter: one iteration of BFGS or Nesterov may use more deriva
 - **Clipped steps:** number of updates that exceeded the educational maximum displacement of $1.25$ units.
 
 **Caution:** This is still an instructional comparison, not a controlled benchmark. Learning-rate choices, clipping, and stopping criteria must be calibrated before comparing computational efficiency. The visual landscape renderer makes additional objective calls that are not included in algorithm counts.
+
+## Interactive WebGL 3D terrain
+
+The Optimizer Race Arena now includes a true Three.js/WebGL scene powered by React Three Fiber. Switch between **2D contour** and **Interactive WebGL 3D** to inspect the same optimization trajectories on a rotatable surface. Orbit controls support dragging to rotate, scrolling to zoom and right-dragging to pan.
+
+The height uses the visual transform $h(x,y)=\min(7,1.35\log(1+\max(0,f(x,y))))$. This preserves objective ordering for the nonnegative benchmark functions while compressing large values; **the vertical axis is not a linear objective scale**. Original objective values and convergence diagnostics remain available in the 2D/leaderboard views.
+
+The 3D view requires WebGL support. Canvas 2D contour mode remains available independently.
