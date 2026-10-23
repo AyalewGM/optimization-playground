@@ -82,3 +82,29 @@ A GitHub Actions workflow builds, tests and deploys to GitHub Pages after change
 - [Nocedal and Wright — Numerical Optimization](https://link.springer.com/book/10.1007/978-0-387-40065-5)
 
 Built as an independent visual mathematics project, following Game of Life and Mandelbrot Explorer.
+
+## Optimizer Race Arena (new)
+
+Compare **Gradient Descent, Momentum, Nesterov, RMSProp, Adam, Newton, and BFGS** on the same objective, from the same starting point. Select competitors, step them synchronously, and inspect:
+
+- Overlaid colored optimizer paths on the 2D landscape.
+- A switchable **rotatable projected-3D wireframe** surface showing trajectories at their objective heights.
+- Synchronized convergence curves plotting $\log(1+f(\mathbf{x}_k))$.
+- A live comparison table with objective values, iteration counts and stop states.
+
+The 3D view is a Canvas projection of a mathematical surface rather than a true WebGL renderer. Rotating its azimuth allows qualitative inspection of the terrain.
+
+For Adam, running first and second moments are updated as
+
+$$
+\begin{aligned}
+m_t&=\beta_1m_{t-1}+(1-\beta_1)g_t,\\
+v_t&=\beta_2v_{t-1}+(1-\beta_2)g_t^2,\\
+\hat m_t&=\frac{m_t}{1-\beta_1^t},\qquad\hat v_t=\frac{v_t}{1-\beta_2^t},\\
+\mathbf{x}_{t+1}&=\mathbf{x}_t-\alpha\frac{\hat m_t}{\sqrt{\hat v_t}+\varepsilon}.
+\end{aligned}
+$$
+
+BFGS maintains an approximation of the **inverse Hessian** with a curvature update whenever $s^Ty>0$. RMSProp uses an exponential average of squared gradients; Nesterov evaluates gradients at a momentum look-ahead point.
+
+**Interpretation caution:** the shared slider value does not equate effective step sizes across methods. Educational step clipping bounds all displacements. Optimization results are not benchmark claims without repeated, calibrated experiments, independent stopping rules and comparable evaluation counts. This first release does not yet include exact line search, Wolfe conditions, or unconstrained trust-region safeguards.
