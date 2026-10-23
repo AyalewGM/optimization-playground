@@ -1,6 +1,6 @@
 import {useMemo} from 'react';
 import {Canvas} from '@react-three/fiber';
-import {OrbitControls,Grid,Line,Html} from '@react-three/drei';
+import {OrbitControls,Grid,Line} from '@react-three/drei';
 import * as THREE from 'three';
 import {landscapes,type Point,type Surface} from './math';
 import {colors,type Runner} from './race';
