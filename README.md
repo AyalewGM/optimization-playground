@@ -129,3 +129,31 @@ The Optimizer Race Arena now includes a true Three.js/WebGL scene powered by Rea
 The height uses the visual transform $h(x,y)=\min(7,1.35\log(1+\max(0,f(x,y))))$. This preserves objective ordering for the nonnegative benchmark functions while compressing large values; **the vertical axis is not a linear objective scale**. Original objective values and convergence diagnostics remain available in the 2D/leaderboard views.
 
 The 3D view requires WebGL support. Canvas 2D contour mode remains available independently.
+
+## Constrained Optimization Studio
+
+Projected gradient descent solves convex constrained problems of the form
+
+$$
+\min_{\mathbf{x}\in C} f(\mathbf{x}), \quad
+\mathbf{x}_{k+1}=\Pi_C\left(\mathbf{x}_k-\alpha\nabla f(\mathbf{x}_k)\right).
+$$
+
+Here $\Pi_C$ is the Euclidean projection onto a **feasible set** $C$. The application demonstrates three convex sets: a box $|x|,|y|\le1$, a unit disk $x^2+y^2\le1$, and the half-plane $x+y\le1$. Two quadratic objectives offer cases where the unconstrained minimizer lies outside the region.
+
+The visualizer shows feasible points, the trajectory, the unconstrained minimizer, objective value and the projected-gradient residual
+
+$$
+R(\mathbf{x})=\left\|\mathbf{x}-\Pi_C\left(\mathbf{x}-\nabla f(\mathbf{x})\right)\right\|_2.
+$$
+
+For the disk, the interface also computes an illustrative KKT multiplier. With $g(x,y)=x^2+y^2-1\le0$, first-order KKT conditions are
+
+$$
+\nabla f(\mathbf{x})+\lambda\nabla g(\mathbf{x})=0,\quad
+\lambda\ge0,\quad g(\mathbf{x})\le0,\quad \lambda g(\mathbf{x})=0.
+$$
+
+These conditions expose **active constraints**, stationarity and complementarity. The examples are smooth convex problems with convex feasible sets; this is not a general-purpose nonlinear programming solver. KKT diagnostics shown are specific to the disk, not claimed for all shapes.
+
+Try starting outside the feasible region; the first state is projected inside. Then compare the box, disk and half-plane and observe how the optimal boundary point changes. The algorithm uses a fixed learning rate with no line search or automated convergence stopping.
