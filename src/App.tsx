@@ -2,6 +2,7 @@ import {useEffect,useMemo,useRef,useState} from 'react';
 import RaceLab from './RaceLab';
 import ConstrainedLab from './ConstrainedLab';
 import FrankWolfeLab from './FrankWolfeLab';
+import GuidedLesson from './GuidedLesson';
 import {Play,Pause,StepForward,RotateCcw,TrendingDown,BrainCircuit} from 'lucide-react';
 import {advance,defaults,initialize,landscapes,type Algorithm,type Point,type Surface} from './math';
 const N=520;
@@ -32,5 +33,6 @@ export default function App(){
  <RaceLab/>
  <ConstrainedLab/>
  <FrankWolfeLab/>
+ <GuidedLesson/>
  <section className="theory"><span className="eyebrow">THE MATHEMATICS</span><h2>Why optimization matters</h2><p>Optimization is the search for the best feasible solution according to a mathematical objective. It powers machine learning, logistics, engineering design, control systems, resource allocation, and scientific inference.</p><div className="theorygrid"><article><h3>Gradient descent</h3><div className="equation">xₖ₊₁ = xₖ − α∇f(xₖ)</div><p>Move against the direction of steepest local increase. The step size α determines how far each update travels. Convex objectives are generally easier to optimize than nonconvex ones.</p></article><article><h3>Momentum</h3><div className="equation">vₖ₊₁ = βvₖ − α∇f(xₖ)</div><p>Accumulate a velocity vector to smooth zigzags and speed movement through shallow valleys. Too much momentum may overshoot an optimum.</p></article><article><h3>Newton's method</h3><div className="equation">xₖ₊₁ = xₖ − αH(xₖ)⁻¹∇f(xₖ)</div><p>Use curvature (the Hessian) to adapt the search direction. This demo falls back to a gradient step when the Hessian is not positive definite.</p></article></div><p className="caveat"><BrainCircuit size={17}/> Educational note: this simulator limits large steps for numerical stability, so its trajectories are illustrative and do not reproduce every unconstrained algorithmic behavior.</p></section></main><footer><div className="shell">Optimization Playground · Independent React + TypeScript mathematical experiment</div></footer></>
 }
