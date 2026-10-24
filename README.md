@@ -161,3 +161,9 @@ Try starting outside the feasible region; the first state is projected inside. T
 ## Guided experiment: Predict → Run → Explain
 
 The first interactive lesson asks learners to predict whether the constrained optimum for a target outside the unit disk lies inside, on, or outside the disk. It then computes 45 projected-gradient steps, reports the objective and stationarity evidence, and asks for a mathematical explanation. Feedback checks whether the explanation discusses both the gradient and feasibility; this lightweight keyword check is **not** a reliable evaluation of mathematical correctness. More structured, mathematically validated assessment is a future improvement.
+
+## Scientific workstation visual design
+
+The interface uses a distinctive **light, research-oriented theme** for Optimization Playground, separating its identity from the immersive dark interfaces used by the fractal and chaos applications. It prioritizes clearly grouped experiment controls, highly legible mathematical explanations, subtle card boundaries, and scientific plots as the main focus.
+
+This design iteration intentionally leaves the objective functions, optimizers, educational exercises, and numerical evaluation code unchanged. Mathematical plots retain dark backgrounds to preserve trajectory contrast. Verify visual contrast, layout, focus visibility, and WebGL controls on desktop and mobile before merging.
